@@ -19,12 +19,11 @@ public class Mux {
     }
 
     public void multiplexorPorDivisionDeTiempo() {
-        byte count = 0;
+        byte count = 0, max = 0, aux = 0;
         for (int i = 0; i < dato.length; i++) {
-            for (int j = 0; j < dato.length; j++) {
-                if (dato[i].length() > dato[j].length()) {
-                    count = (byte) dato[i].length();
-                }
+            if (dato[i].length() >= dato[count].length() && dato[i].length() > aux) {
+                max = (byte) dato[i].length();
+                aux = max;
             }
         }
         String mux = "";
@@ -33,10 +32,10 @@ public class Mux {
         }
         dato = invertirManual(dato);
         int l = 0;
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < max; i++) {
             int k = 0;
 
-            for (int j = l; j < count; k++) {
+            for (int j = l; j < max; k++) {
                 try {
                     mux += "[" + String.valueOf(dato[k].charAt(j)) + "]";
                 } catch (StringIndexOutOfBoundsException e) {
